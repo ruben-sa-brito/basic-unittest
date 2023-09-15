@@ -18,7 +18,12 @@ class TestCalculadora(unittest.TestCase):
         )  
         
         for x_y_saida  in x_y_saidas:
-            x, y, saida = x_y_saida
-            self.assertEqual(soma(x, y), saida)     
+            with self.subTest(x_y_saida=x_y_saida):
+                x, y, saida = x_y_saida
+                self.assertEqual(soma(x, y), saida)   
+    
+    def test_soma_x_nao_e_int_ou_float_deve_retornar_assertionerror(self):
+        with self.assertRaises(AssertionError):
+            soma('11', 0)             
     
 unittest.main(verbosity=2)    
